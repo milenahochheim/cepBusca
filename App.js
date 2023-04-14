@@ -1,20 +1,25 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState, useEffect } from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+
+import Lista from "./src/components/Lista";
+import BuscaCep from "./src/components/BuscaCep";
+
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import axios from "axios";
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+    return (
+      <NavigationContainer>
+        <Stack.Navigator
+            screenOptions={{ headerShown: false }}
+        >
+          <Stack.Screen name="BuscaCep" component={BuscaCep} />
+          <Stack.Screen name="Lista" component={Lista} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    );
+  };
